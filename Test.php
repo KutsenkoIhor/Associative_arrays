@@ -81,32 +81,84 @@
 //$result
 //var_dump($result);
 
-$lessonMembers = [
-    'syntax' => 3,
-    'using' => 2,
-    'foreach' => 10,
-    'operations' => 10,
-    'destructuring' => 2,
-    'array' => 2,
-];
+//$lessonMembers = [
+//    'syntax' => 3,
+//    'using' => 2,
+//    'foreach' => 10,
+//    'operations' => 10,
+//    'destructuring' => 2,
+//    'array' => 2,
+//];
+//
+//
+//
+//function findKeys(array $arr, $znacheniya): array
+//{
+//    $spisok = [];
+//    foreach ($arr as $key => $value) {
+//        if ($znacheniya === $value) {
+//            $spisok[] = $key;
+//        }
+//    }
+//    return $spisok;
+//}
+//
+//$result = findKeys($lessonMembers, 10);
+//// ['foreach', 'operations']
+//print_r($result);
+//echo "\n";
+//$result = findKeys($lessonMembers, 3);
+//// ['syntax']
+//print_r($result);
 
+//--------------------------------------------------------------------------
 
+//$data = ['first_name' => 'Mark', 'last_name' => 'Smith'];
+//$keys = array_keys($data);
+//foreach ($keys as $key) {
+//    print_r($data[$key]);
+//}
+//$vakue = array_values($data);
+//print_r($vakue);
+//$data1 = [
+//    'first_name' => 'Mark',
+//    'last_name' => 'Polo',
+//];
+//
+//$data2 = [
+//    'last_name' => 'Brin',
+//    'age' => 15,
+//];
+//
+//$result = array_merge($data1, $data2);
+//print_r($result);
+//--------------------------------------------------------------------------
 
-function findKeys(array $arr, $znacheniya): array
-{
-    $spisok = [];
-    foreach ($arr as $key => $value) {
-        if ($znacheniya === $value) {
-            $spisok[] = $key;
-        }
-    }
-    return $spisok;
-}
+//$person = ['first' => 'rasmus', 'last' => 'lerdof', 'manager' => true];
+//['last' => $lastname, 'first' => $firstname] = $person;
+//print_r($lastname);
 
-$result = findKeys($lessonMembers, 10);
-// ['foreach', 'operations']
-print_r($result);
-echo "\n";
-$result = findKeys($lessonMembers, 3);
-// ['syntax']
-print_r($result);
+//$persons = [
+//    ['first' => 'Rasmus', 'last' => 'Lerdorf'],
+//    ['first' => 'Fabien', 'last' => 'Potencier'],
+//    ['first' => 'Taylor', 'last' => 'Otwell']
+//];
+
+//foreach ($persons as ['first' => $firstname, 'last' => $lastname]) {
+//    var_dump($firstname, $lastname);
+//}
+
+//$vars = [
+//    'color' => 'blue',
+//    'size'  => 'medium',
+//    'shape' => 'sphere'
+//];
+//extract($vars);
+//
+//var_dump($color, $size, $shape);
+//--------------------------------------------------------------------------
+// Любые данные которые мы хотим хешировать
+$checksum = crc32('The quick brown fox jumped over the lazy dog.');
+
+// Для одних и тех же данных хеш всегда одинаковый!
+print_r($checksum); // => 2191738434
