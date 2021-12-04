@@ -7,59 +7,46 @@ function make(): array
 
 function set(&$map, $key, $value): bool
 {
-    $hash = crc32($key);
-    $index = $hash % 1000;
-    $keyset = array_keys($map);
-    if (in_array($index, $keyset)) {
-        $map[$index] = [$key, $value];
-    } else {
-        foreach ($keyset as $kemap) {
-            if ($index !== crc32($kemap) % 1000) {
-                $map[$index] = [$key, $value];
-                return true;
-            } else {
-                return false;
-            }
+    $arrKey = array_keys($map);
+    $keyHash = crc32($key) % 1000;
+    if (in_array($keyHash, $arrKey)) {
+        if ($map[$keyHash][0] === $key) {
+            $map[$keyHash] = [$key, $value];
+            return true;
+        } else {
+            return false;
         }
-
+    } else {
+        $map[$keyHash] = [$key, $value];
+        return true;
     }
-    return true;
 }
 
 function get($map, $key, $defaultValue = null)
 {
-    $hash = crc32($key);
-    $index = $hash % 1000;
-    $keyset = array_keys($map);
-    if (!in_array($index, $keyset)) {
+    $arrKey = array_keys($map);
+    $keyHash = crc32($key) % 1000;
+    if (!in_array($keyHash, $arrKey)) {
         return $defaultValue;
     } else {
-        if (crc32($map[$index][0]) % 1000 !== $index){
+        if ($map[$keyHash][0] !== $key) {
             return $defaultValue;
         } else {
-            return $map[$index][1];
+            return $map[$keyHash][1];
         }
     }
 }
 
 
-$map = make();
+print_r($map = make());
+echo "\n";
 $result = get($map, 'key');
 print_r($result); // => null
 echo "\n";
-
 $result = get($map, 'key', 'value');
 print_r($result); // => value
 echo "\n";
-
 var_dump(set($map, 'key2', 'value2'));
 echo "\n";
-
 $result = get($map, 'key2');
 print_r($result); // => value2
-//echo "\n";
-//var_dump(set($map, 'key2', 'another value'));
-//$result = get($map, 'key2');
-//print_r($result);
-//echo "\n";
-//$this->assertEquals('another value', $result);
